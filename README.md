@@ -4,6 +4,7 @@ This is a small helper to perform Firebase bakcups.
 
 ## From help
 
+```
 Firebase backup helper
 Usage: ./firestore-backup.sh [--credentials <arg>] [--collections <arg>] [--rotation-days <arg>] [--(no-)quiet] [--(no-)dry-run] [-h|--help] <project> <region> <bucket-address> <service-account>
 	<project>: Poject name
@@ -14,3 +15,4 @@ Usage: ./firestore-backup.sh [--credentials <arg>] [--collections <arg>] [--rota
 	--collections: Collections to be exported, can be blank (no default)
 	--rotation-days: Rotation days, e.g. 30 indicates that when doing a new backup, those older than 30 days will be deleted. If no flag then deletion is disabled (no default)
 	-h, --help: Prints help
+```
