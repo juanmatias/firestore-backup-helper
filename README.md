@@ -1,6 +1,6 @@
 # Firebase Backup
 
-This is a small helper to perform Firebase bakcups.
+This is a small helper to perform Firebase backups.
 
 ## From help
 
