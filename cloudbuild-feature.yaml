@@ -17,4 +17,6 @@ steps:
       - 'BUILD=$BUILD_ID'
       - 'PROJECT=$PROJECT_ID'
       - 'REV=$REVISION_ID'
+      - 'BRANCH_NAME=$BRANCH_NAME'
+      - 'COMMIT_SHA=$COMMIT_SHA'
 
