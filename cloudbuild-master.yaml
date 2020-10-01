@@ -1,0 +1,23 @@
+---
+substitutions:
+  _MDLINTER: 'markdownlint/markdownlint'
+  _BASH: 'bash'
+  _ARGBASH: 'matejak/argbash'
+
+steps:
+  # Run unit tests
+  - name: '${_MDLINTER}'
+    id: 'markdownlinter'
+    args:
+      - 'README.md'
+  - name: '${_ARGBASH}'
+    id: 'argbash'
+    args:
+      - 'firestore-backup.m4'
+      - '-o'
+      - 'firestore-backup.sh'
+  - name: '${_BASH}'
+    id: 'shellscript-checker'
+    args:
+      - '-n'
+      - 'firestore-backup.sh'
