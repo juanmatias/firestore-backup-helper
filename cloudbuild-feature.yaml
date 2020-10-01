@@ -13,3 +13,8 @@ steps:
     id: 'envvar-test'
     args:
       - 'printenv'
+    env:
+      - 'BUILD=$BUILD_ID'
+      - 'PROJECT=$PROJECT_ID'
+      - 'REV=$REVISION_ID'
+
