@@ -46,12 +46,18 @@ steps:
     args:
       - '-c'
       - |
+        git config user.email "cloudbuild@${PROJECT_ID}" && git config  user.name "Cloud Run Process ${BUILD_ID}"
         cd ./repo
         git checkout ${_BASE_BRANCH}
-        git merge --no-ff ${_HEAD_BRANCH}
-        git branch -d ${_HEAD_BRANCH}
+        git fetch origin ${_HEAD_BRANCH}
+        git merge --no-ff origin/${_HEAD_BRANCH}
+        #git push origin --delete ${_HEAD_BRANCH}
+        git fetch origin ${_BASE_BRANCH}
     env:
       - '_HEAD_BRANCH=$_HEAD_BRANCH'
       - '_BASE_BRANCH=$_BASE_BRANCH'
       - '_HEAD_REPO_URL=$_HEAD_REPO_URL'
       - '_PR_NUMBE=$_PR_NUMBE'
+    volumes:
+    - name: 'ssh'
+      path: /root/.ssh
