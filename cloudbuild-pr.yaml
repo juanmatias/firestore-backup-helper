@@ -1,12 +1,12 @@
 ---
 substitutions:
-  _MDLINTER: 'markdownlint/markdownlint'
-  _BASH: 'bash'
-  _ARGBASH: 'matejak/argbash'
   _GIT: 'gcr.io/cloud-builders/git'
   _REPO_URL: 'git@github.com:juanmatias/firestore-backup-helper.git'
+  _MASTER_BRANCH: 'master'
+  _DEVELOP_BRANCH: 'develop'
 
 steps:
+# get secret to connect to github
   - name: gcr.io/cloud-builders/gcloud
     entrypoint: 'bash'
     args: [ '-c', 'gcloud secrets versions access latest --secret=test-secret > /root/.ssh/id_github' ]
@@ -56,8 +56,8 @@ steps:
         echo "Merging" && \
         git merge --no-ff origin/${_HEAD_BRANCH} && \
         echo "Check if we are in ${_MASTER_BRANCH}" && \
-        ([ "${_BASE_BRANCH}" = "${_MASTER_BRANCH}" ] && \
-         (echo "...working on dev now" && git checkout ${_DEVELOP_BRANCH} && echo "...merging" && git merge --no-ff origin/${_HEAD_BRANCH} && echo "...pushing" && git push origin ${_DEVELOP_BRANCH})) && \
+        (([ "${_BASE_BRANCH}" = "${_MASTER_BRANCH}" ] && \
+         (echo "...working on dev now" && git checkout ${_DEVELOP_BRANCH} && echo "...merging" && git merge --no-ff origin/${_HEAD_BRANCH} && echo "...pushing" && git push origin ${_DEVELOP_BRANCH})) || echo "...workig on non-${_MASTER_BRANCH} branch" ) && \
         echo "Pushing ${_BASE_BRANCH}" && \
         git push origin ${_BASE_BRANCH} && \
         echo "Deleting ${_HEAD_BRANCH}" && \
@@ -67,7 +67,7 @@ steps:
       - '_HEAD_BRANCH=$_HEAD_BRANCH'
       - '_BASE_BRANCH=$_BASE_BRANCH'
       - '_HEAD_REPO_URL=$_HEAD_REPO_URL'
-      - '_PR_NUMBE=$_PR_NUMBE'
+      - '_PR_NUMBER=$_PR_NUMBER'
     volumes:
     - name: 'ssh'
       path: /root/.ssh
