@@ -21,3 +21,12 @@ steps:
     args:
       - '-n'
       - 'firestore-backup.sh'
+  - name: '${_BASH}'
+    id: 'envvars'
+    args:
+      - 'pintenv'
+    env:
+      - '_HEAD_BRANCH=$_HEAD_BRANCH'
+      - '_BASE_BRANCH=$_BASE_BRANCH'
+      - '_HEAD_REPO_URL=$_HEAD_REPO_URL'
+      - '_PR_NUMBE=$_PR_NUMBE'
