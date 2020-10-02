@@ -26,6 +26,6 @@ Usage: ./firestore-backup.sh [--credentials <arg>] [--collections <arg>]
 
 ## Meta data
 
-Author:Juan Kungfoo de la Camara
+Author:Juan Matias Kungfoo de la Camara
 
 Email: juanmatias@gmail.com
