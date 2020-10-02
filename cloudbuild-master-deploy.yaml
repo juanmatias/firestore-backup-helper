@@ -4,8 +4,8 @@ substitutions:
 
 steps:
   - name: '${_BASH}'
-    id: 'shellscript-checker'
+    id: 'deploy'
     args:
       - '-c'
       - |
-        echo "Here should be the deploy steps"
+        echo "Here should be the deploy-to-prod steps"

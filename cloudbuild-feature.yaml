@@ -10,13 +10,21 @@ steps:
     args:
       - 'README.md'
   - name: '${_BASH}'
-    id: 'envvar-test'
+    id: 'test'
     args:
-      - 'printenv'
-    env:
-      - 'BUILD=$BUILD_ID'
-      - 'PROJECT=$PROJECT_ID'
-      - 'REV=$REVISION_ID'
-      - 'BRANCH_NAME=$BRANCH_NAME'
-      - 'COMMIT_SHA=$COMMIT_SHA'
-
+      - '-c'
+      - |
+        echo "Test steps"
+  - name: '${_BASH}'
+    id: 'build'
+    args:
+      - '-c'
+      - |
+        echo "Build steps"
+    # envvars that can be used
+    #env:
+    #  - 'BUILD=$BUILD_ID'
+    #  - 'PROJECT=$PROJECT_ID'
+    #  - 'REV=$REVISION_ID'
+    #  - 'BRANCH_NAME=$BRANCH_NAME'
+    #  - 'COMMIT_SHA=$COMMIT_SHA'

@@ -1,0 +1,65 @@
+---
+description: Develop Branch
+filename: cloudbuild-develop.yaml
+github:
+  name: firestore-backup-helper
+  owner: juanmatias
+  push:
+    branch: ^develop$
+name: develop
+---
+description: Devlop Branch - PR
+filename: cloudbuild-pr.yaml
+github:
+  name: firestore-backup-helper
+  owner: juanmatias
+  pullRequest:
+    branch: ^develop$
+    commentControl: COMMENTS_ENABLED
+name: develop-pr
+---
+description: Master Branch
+filename: cloudbuild-master.yaml
+github:
+  name: firestore-backup-helper
+  owner: juanmatias
+  push:
+    branch: ^master$
+name: master
+---
+description: Master Branch - PR
+filename: cloudbuild-pr.yaml
+github:
+  name: firestore-backup-helper
+  owner: juanmatias
+  pullRequest:
+    branch: ^master$
+    commentControl: COMMENTS_ENABLED
+name: master-pr
+---
+description: Master branch - Tag
+filename: cloudbuild-master-deploy.yaml
+github:
+  name: firestore-backup-helper
+  owner: juanmatias
+  push:
+    tag: ^v(0|[1-9]\d*)\.(0|[1-9]\d*)\.(0|[1-9]\d*)(?:-((?:0|[1-9]\d*|\d*[a-zA-Z-][0-9a-zA-Z-]*)(?:\.(?:0|[1-9]\d*|\d*[a-zA-Z-][0-9a-zA-Z-]*))*))?(?:\+([0-9a-zA-Z-]+(?:\.[0-9a-zA-Z-]+)*))?$
+name: master-tag
+---
+description: Feature and Fix branches
+filename: cloudbuild-feature.yaml
+github:
+  name: firestore-backup-helper
+  owner: juanmatias
+  push:
+    branch: ^(feature/|fix/).+$
+name: feature-fix
+---
+description: Release and Hot-Fix branches
+filename: cloudbuild-release.yaml
+github:
+  name: firestore-backup-helper
+  owner: juanmatias
+  push:
+    branch: ^(release/|hotfix/).+$
+name: release-hotfix

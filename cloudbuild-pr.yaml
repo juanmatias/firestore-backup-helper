@@ -4,16 +4,17 @@ substitutions:
   _REPO_URL: 'git@github.com:juanmatias/firestore-backup-helper.git'
   _MASTER_BRANCH: 'master'
   _DEVELOP_BRANCH: 'develop'
+  _GITHUB_SECRET_NAME: 'test-secret'
 
 steps:
 # get secret to connect to github
   - name: gcr.io/cloud-builders/gcloud
     entrypoint: 'bash'
-    args: [ '-c', 'gcloud secrets versions access latest --secret=test-secret > /root/.ssh/id_github' ]
+    args: [ '-c', 'gcloud secrets versions access latest --secret=${_GITHUB_SERET_NAME} > /root/.ssh/id_github' ]
     volumes:
       - name: 'ssh'
         path: /root/.ssh
-# Set up git with key and domain
+# set up git with key and domain
   - name: '${_GIT}'
     entrypoint: 'bash'
     args:
@@ -41,12 +42,13 @@ steps:
     - name: 'ssh'
       path: /root/.ssh
   - name: '${_GIT}'
-    id: 'git-branch'
+    id: 'git-flow'
     entrypoint: 'bash'
     args:
       - '-c'
       - |
         cd ./repo && \
+        echo "PR: ${_PR_NUMBER}" && \
         echo "Setting user" && \
         git config user.email "cloudbuild@${PROJECT_ID}" && git config  user.name "Cloud Run Process ${BUILD_ID}" && \
         echo "Checkout ${_BASE_BRANCH}" && \
