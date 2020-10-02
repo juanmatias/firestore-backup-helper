@@ -1,0 +1,57 @@
+---
+substitutions:
+  _MDLINTER: 'markdownlint/markdownlint'
+  _BASH: 'bash'
+  _ARGBASH: 'matejak/argbash'
+  _GIT: 'gcr.io/cloud-builders/git'
+  _REPO_URL: 'git@github.com:juanmatias/firestore-backup-helper.git'
+
+steps:
+  - name: gcr.io/cloud-builders/gcloud
+    entrypoint: 'bash'
+    args: [ '-c', 'gcloud secrets versions access latest --secret=test-secret > /root/.ssh/id_github' ]
+    volumes:
+      - name: 'ssh'
+        path: /root/.ssh
+# Set up git with key and domain
+  - name: '${_GIT}'
+    entrypoint: 'bash'
+    args:
+    - '-c'
+    - |
+      chmod 600 /root/.ssh/id_github
+      cat <<EOF >/root/.ssh/config
+      HostName github.com
+      IdentityFile /root/.ssh/id_github
+      EOF
+      ssh-keyscan -t rsa github.com > /root/.ssh/known_hosts
+      ls /root/.ssh/
+    volumes:
+    - name: 'ssh'
+      path: /root/.ssh
+  
+## merge _HEAD_BRANCH into _BASE_BRANCH
+  - name: '${_GIT}'
+    id: 'git-clone'
+    args:
+        - 'clone'
+        - '${_REPO_URL}'
+        - './repo'
+    volumes:
+    - name: 'ssh'
+      path: /root/.ssh
+  - name: '${_GIT}'
+    id: 'git-branch'
+    entrypoint: 'bash'
+    args:
+      - '-c'
+      - |
+        cd ./repo
+        git checkout ${_BASE_BRANCH}
+        git merge --no-ff ${_HEAD_BRANCH}
+        git branch -d ${_HEAD_BRANCH}
+    env:
+      - '_HEAD_BRANCH=$_HEAD_BRANCH'
+      - '_BASE_BRANCH=$_BASE_BRANCH'
+      - '_HEAD_REPO_URL=$_HEAD_REPO_URL'
+      - '_PR_NUMBE=$_PR_NUMBE'

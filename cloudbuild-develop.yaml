@@ -3,6 +3,7 @@ substitutions:
   _MDLINTER: 'markdownlint/markdownlint'
   _BASH: 'bash'
   _ARGBASH: 'matejak/argbash'
+  _GIT: 'gcr.io/cloud-builders/git'
 
 steps:
   # Run unit tests
