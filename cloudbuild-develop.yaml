@@ -3,7 +3,6 @@ substitutions:
   _MDLINTER: 'markdownlint/markdownlint'
   _BASH: 'bash'
   _ARGBASH: 'matejak/argbash'
-  _GIT: 'gcr.io/cloud-builders/git'
 
 steps:
   # Run unit tests
@@ -22,12 +21,3 @@ steps:
     args:
       - '-n'
       - 'firestore-backup.sh'
-  - name: '${_BASH}'
-    id: 'envvars'
-    args:
-      - 'printenv'
-    env:
-      - '_HEAD_BRANCH=$_HEAD_BRANCH'
-      - '_BASE_BRANCH=$_BASE_BRANCH'
-      - '_HEAD_REPO_URL=$_HEAD_REPO_URL'
-      - '_PR_NUMBE=$_PR_NUMBE'

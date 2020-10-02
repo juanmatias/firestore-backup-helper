@@ -1,0 +1,11 @@
+---
+substitutions:
+  _BASH: 'bash'
+
+steps:
+  - name: '${_BASH}'
+    id: 'shellscript-checker'
+    args:
+      - '-c'
+      - |
+        echo "Here should be the deploy steps"
