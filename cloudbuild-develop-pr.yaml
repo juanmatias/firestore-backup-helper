@@ -51,7 +51,7 @@ steps:
         git checkout ${_BASE_BRANCH}
         git fetch origin ${_HEAD_BRANCH}
         git merge --no-ff origin/${_HEAD_BRANCH}
-        git push origin --delete ${_HEAD_BRANCH}
+        #git push origin --delete ${_HEAD_BRANCH}
         git fetch origin ${_BASE_BRANCH}
     env:
       - '_HEAD_BRANCH=$_HEAD_BRANCH'
