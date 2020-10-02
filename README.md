@@ -23,3 +23,5 @@ Usage: ./firestore-backup.sh [--credentials <arg>] [--collections <arg>]
         deletion is disabled (no default)
     -h, --help: Prints help
 ```
+
+Author:Kungfoo
