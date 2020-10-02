@@ -24,7 +24,7 @@ steps:
   - name: '${_BASH}'
     id: 'envvars'
     args:
-      - 'pintenv'
+      - 'printenv'
     env:
       - '_HEAD_BRANCH=$_HEAD_BRANCH'
       - '_BASE_BRANCH=$_BASE_BRANCH'
