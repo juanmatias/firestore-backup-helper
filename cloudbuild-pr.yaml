@@ -10,7 +10,7 @@ steps:
 # get secret to connect to github
   - name: gcr.io/cloud-builders/gcloud
     entrypoint: 'bash'
-    args: [ '-c', 'gcloud secrets versions access latest --secret=${_GITHUB_SERET_NAME} > /root/.ssh/id_github' ]
+    args: [ '-c', 'gcloud secrets versions access latest --secret=${_GITHUB_SECRET_NAME} > /root/.ssh/id_github' ]
     volumes:
       - name: 'ssh'
         path: /root/.ssh
