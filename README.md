@@ -29,3 +29,6 @@ Usage: ./firestore-backup.sh [--credentials <arg>] [--collections <arg>]
 Author:Juan Matias Kungfoo de la Camara
 
 Email: juanmatias@gmail.com
+
+May the Force be with you
+
