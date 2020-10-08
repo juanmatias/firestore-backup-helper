@@ -1,4 +1,4 @@
-# Firebase Backup
+# The very title for new Firebase Backup
 
 This is a small helper to perform Firebase backups.
 
@@ -29,3 +29,8 @@ Usage: ./firestore-backup.sh [--credentials <arg>] [--collections <arg>]
 Author:Juan Matias Kungfoo de la Camara
 
 Email: juanmatias@gmail.com
+
+### StarWars quotes
+
+May the Force be with you
+
