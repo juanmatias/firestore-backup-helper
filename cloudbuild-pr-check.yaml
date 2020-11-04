@@ -1,0 +1,30 @@
+---
+substitutions:
+  _MDLINTER: 'markdownlint/markdownlint'
+  _BASH: 'bash'
+
+steps:
+  # Run unit tests
+  - name: '${_MDLINTER}'
+    id: 'markdownlinter'
+    args:
+      - 'README.md'
+  - name: '${_BASH}'
+    id: 'test'
+    args:
+      - '-c'
+      - |
+        echo "Some deeper Test steps"
+  - name: '${_BASH}'
+    id: 'build'
+    args:
+      - '-c'
+      - |
+        echo "Build steps"
+    # envvars that can be used
+    #env:
+    #  - 'BUILD=$BUILD_ID'
+    #  - 'PROJECT=$PROJECT_ID'
+    #  - 'REV=$REVISION_ID'
+    #  - 'BRANCH_NAME=$BRANCH_NAME'
+    #  - 'COMMIT_SHA=$COMMIT_SHA'
